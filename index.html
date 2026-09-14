@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>구독:너부자니?</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">MONTHLY CONTROL CENTER</p>
+        <h1>구독:너부자니?</h1>
+      </div>
+      <button class="primary-button" id="new-subscription-button" type="button">+ 구독 추가</button>
+    </header>
+
+    <main>
+      <section class="summary-grid" aria-label="지출 요약">
+        <article class="summary-card summary-card--accent">
+          <span class="summary-label">월 합계</span>
+          <strong id="monthly-total">0원</strong>
+          <span class="summary-note">월 기준으로 환산한 금액</span>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">연간 합계</span>
+          <strong id="yearly-total">0원</strong>
+          <span class="summary-note">예상 연간 지출</span>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">이번 주 결제 예정</span>
+          <strong id="upcoming-total">0건</strong>
+          <span class="summary-note" id="upcoming-note">앞으로 7일 안에 결제</span>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <div class="subscriptions-panel panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">YOUR SUBSCRIPTIONS</p>
+              <h2>구독 목록</h2>
+            </div>
+            <span class="count-badge" id="subscription-count">0개</span>
+          </div>
+          <div class="subscription-list" id="subscription-list"></div>
+          <div class="empty-state" id="empty-state" hidden>
+            <span class="empty-icon">○</span>
+            <h3>아직 등록한 구독이 없어요</h3>
+            <p>매달 빠져나가는 서비스를 한 곳에서 관리해보세요</p>
+            <button class="secondary-button" id="empty-add-button" type="button">첫 구독 추가하기</button>
+          </div>
+        </div>
+
+        <aside class="category-panel panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SPENDING MIX</p>
+              <h2>카테고리별 비중</h2>
+            </div>
+          </div>
+          <div class="category-chart" id="category-chart"></div>
+          <p class="chart-empty" id="chart-empty">구독을 추가하면 비중이 표시됩니다.☆</p>
+        </aside>
+      </section>
+    </main>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden>
+      <section class="subscription-modal" role="dialog" aria-modal="true" aria-labelledby="form-title">
+        <div class="modal-heading">
+          <div>
+            <p class="eyebrow">SUBSCRIPTION DETAILS</p>
+            <h2 id="form-title">새 구독 추가</h2>
+          </div>
+          <button class="icon-button" id="close-modal-button" type="button" aria-label="닫기">×</button>
+        </div>
+        <form id="subscription-form">
+          <input id="subscription-id" type="hidden">
+          <label>서비스 이름<input id="name" name="name" type="text" placeholder="예: 넷플릭스" required></label>
+          <div class="form-row">
+            <label>금액<input id="amount" name="amount" type="number" min="0" step="1" placeholder="13500" required></label>
+            <label>결제 주기<select id="cycle" name="cycle"><option value="monthly">매월</option><option value="yearly">매년</option></select></label>
+          </div>
+          <div class="form-row">
+            <label>다음 결제일<input id="next-payment-date" name="nextPaymentDate" type="date" required></label>
+            <label>카테고리<input id="category" name="category" type="text" placeholder="예: 영상" required></label>
+          </div>
+          <label>결제 수단<input id="payment-method" name="paymentMethod" type="text" placeholder="예: 현대카드" required></label>
+          <div class="form-actions">
+            <button class="secondary-button" id="cancel-modal-button" type="button">취소</button>
+            <button class="primary-button" type="submit">저장하기</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+  <script src="js/logic.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
